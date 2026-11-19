@@ -60,7 +60,7 @@ Install the optional `pywin32` dependency on Windows (`python -m pip install pyw
 python -m backend.collectors.windows_to_api --limit 100
 ```
 
-This reads a bounded batch of recent 4624/4625 events. Field extraction is best-effort because event layouts differ across Windows versions. Inspect events before using them for operational decisions. Linux authentication log ingestion is a future extension.
+This reads a bounded batch of recent 4624/4625 events. To poll continuously, use `python -m backend.collectors.windows_to_api --watch --interval 15 --limit 100` and stop it with Ctrl+C. The collector re-reads a bounded recent window; stable Windows record IDs prevent duplicate storage. You may need to open PowerShell as Administrator if Windows denies access to the Security log. It stores normalized fields and a small event ID/record number reference locally, not the full rendered Windows event message. Username and source IP parsing follows the standard Security event field positions; unsupported or absent values are left blank. Linux authentication log ingestion is a future extension.
 
 ## API overview
 
