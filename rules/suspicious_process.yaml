@@ -1,0 +1,6 @@
+# Local default watchlist. Configure via SENTINEL_PROCESS_WATCHLIST.
+- id: DET-003
+  name: Suspicious process execution
+  event_type: process_started
+  watchlist: [mimikatz.exe, procdump.exe, psexec.exe]
+  severity: medium

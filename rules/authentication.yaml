@@ -1,0 +1,22 @@
+# SentinelAI's simplified Sigma-inspired rules (not Sigma compliant).
+- id: DET-001
+  name: Brute-force login
+  event_type: failed_login
+  threshold: 10
+  time_window_seconds: 120
+  group_by: [username, source_ip]
+  severity: high
+- id: DET-002
+  name: Repeated login failures
+  event_type: failed_login
+  threshold: 5
+  time_window_seconds: 600
+  group_by: [username]
+  severity: medium
+- id: DET-004
+  name: Successful login after repeated failures
+  event_type: successful_login
+  threshold: 5
+  time_window_seconds: 600
+  group_by: [username]
+  severity: high
